@@ -1,0 +1,19 @@
+<?php 
+/**
+ * @see Mage_Catalog_Block_Seo_Sitemap_
+ */
+?>
+<?php $_items = $this->getCollection(); ?>
+<?php if($_items->getSize()): ?>
+    <div class="content">
+        <ul class="bare-list">
+            <?php foreach ($_items as $_item): ?>
+                <li><a href="<?php echo $this->getItemUrl($_item) ?>"><?php echo $_item->name ?></a></li>
+            <?php endforeach; ?>
+        </ul>
+    </div>
+<?php else: ?>
+    <div class="note-msg">
+        <?php echo $this->__('There are no %s available.', $this->getItemsTitle()); ?>
+    </div>
+<?php endif ?>

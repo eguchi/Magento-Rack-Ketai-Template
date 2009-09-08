@@ -1,0 +1,16 @@
+<?php 
+/**
+ * Top menu for store
+ *
+ * @see Mage_Catalog_Block_Navigation
+ */
+?>
+<div class="header-nav-container">
+    <div class="header-nav">
+        <ul id="nav">
+        <?php foreach ($this->getStoreCategories() as $_category): ?>
+            <?php echo $this->drawItemSingle($_category) ?>
+        <?php endforeach ?>
+        </ul>
+    </div>
+</div>

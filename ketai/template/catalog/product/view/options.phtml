@@ -1,0 +1,6 @@
+<?php $_options = Mage::helper('core')->decorateArray($this->getOptions()) ?>
+    <dl>
+    <?php foreach($_options as $_option): ?>
+        <?php echo $this->getOptionHtml($_option) ?>
+    <?php endforeach; ?>
+    </dl>

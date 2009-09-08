@@ -1,0 +1,36 @@
+<?php
+/**
+ * Product media data template
+ *
+ * @see Mage_Catalog_Block_Product_View_Media
+ */
+?>
+<?php $_product = $this->getProduct() ?>
+<?php if ($_product->getImage() != 'no_selection' && $_product->getImage()): ?>
+<p class="product-image-zoom">
+    <img id="image" src="<?php echo $this->helper('catalog/image')->init($_product, 'image'); ?>" alt="<?php echo $this->htmlEscape($this->getImageLabel()) ?>" title="<?php echo $this->htmlEscape($this->getImageLabel()) ?>" />
+</p>
+<div class="image-zoom" id="track_outer">
+    <img id="zoom_out" src="<?php echo $this->getSkinUrl('images/slider_btn_zoom_out.gif') ?>" alt="<?php echo $this->__('Zoom Out') ?>" class="btn-zoom-out" />
+    <div id="track">
+        <div id="handle"></div>
+    </div>
+    <img id="zoom_in" src="<?php echo $this->getSkinUrl('images/slider_btn_zoom_in.gif') ?>" alt="<?php echo $this->__('Zoom In') ?>" class="btn-zoom-in" />
+</div>
+<?php else: ?>
+<img src="<?php echo $this->helper('catalog/image')->init($_product, 'image')->resize(265); ?>" alt="<?php echo $this->htmlEscape($_product->getImageLabel()) ?>" />
+<?php endif; ?>
+<?php if (count($this->getGalleryImages()) > 0): ?>
+<div class="more-views">
+    <h4><?php echo $this->__('More Views') ?></h4>
+    <ul>
+    <?php foreach ($this->getGalleryImages() as $_image): ?>
+        <li>
+            <a href="#" onclick="popWin('<?php echo $this->getGalleryUrl($_image) ?>', 'gallery', 'scrollbars=yes,width=300,height=300,resizable=yes');return false;">
+                <img src="<?php echo $this->helper('catalog/image')->init($this->getProduct(), 'thumbnail', $_image->getFile())->resize(68, 68); ?>" width="68" height="68" alt="<?php echo $this->htmlEscape($_image->getLabel()) ?>" title="<?php echo $this->htmlEscape($_image->getLabel()) ?>" />
+            </a>
+        </li>
+    <?php endforeach; ?>
+    </ul>
+</div>
+<?php endif; ?>

@@ -1,0 +1,80 @@
+<?xml version="1.0"?>
+<layout version="0.1.0">
+<!--
+Default layout, loads most of the pages
+-->
+    <default>
+        <block type="page/html" name="root" output="toHtml" template="page/1column.phtml">
+            <block type="page/html_head" name="head" as="head">
+				<action method="addCss"><stylesheet>css/iphone.css</stylesheet></action>
+            </block>
+            <block type="page/html_notices" name="global_notices" as="global_notices" template="page/html/notices.phtml" />
+            <block type="page/html_header" name="header" as="header">
+				<block name="user_links" as="user_links" type="page/template_links" />
+                <block type="page/template_links" name="top.links" as="topLinks"/>
+            </block>
+            <block type="core/messages" name="global_messages" as="global_messages"/>
+            <block type="core/messages" name="messages" as="messages"/>
+            <block type="core/text_list" name="content" as="content"/>
+            <block type="page/html_footer" name="footer" as="footer" template="page/html/footer.phtml">
+                <block type="page/template_links" name="footer_links" as="footer_links" template="page/template/links.phtml"/>
+            </block>
+            <block type="core/text_list" name="before_body_end" as="before_body_end"/>
+        </block>
+        <block type="core/profiler" output="toHtml"/>
+    </default>
+
+    <print>
+        <!-- Mage_Page -->
+        <block type="page/html" name="root" output="toHtml" template="page/print.phtml">
+            <block type="page/html_head" name="head" as="head">
+                <action method="addCss"><stylesheet>css/reset.css</stylesheet></action>
+                <action method="addCss"><stylesheet>css/boxes.css</stylesheet></action>
+                <action method="addCss"><stylesheet>css/clears.css</stylesheet></action>
+                <action method="addCss"><stylesheet>css/menu.css</stylesheet></action>
+            </block>
+            <block type="core/text_list" name="content" as="content"/>
+        </block>
+    </print>
+    
+     <!-- Custom page layout handles -->
+    <page_empty>
+        <reference name="root">
+            <action method="setTemplate"><template>page/one-column.phtml</template></action>
+            <!-- Mark root page block that template is applied -->
+            <action method="setIsHandle"><applied>1</applied></action> 
+        </reference>
+    </page_empty>
+    
+    <page_one_column>
+        <reference name="root">
+            <action method="setTemplate"><template>page/1column.phtml</template></action>
+            <!-- Mark root page block that template is applied -->
+            <action method="setIsHandle"><applied>1</applied></action> 
+        </reference>
+    </page_one_column>
+    
+    <page_two_columns_left>
+        <reference name="root">
+            <action method="setTemplate"><template>page/2columns-left.phtml</template></action>
+            <!-- Mark root page block that template is applied -->
+            <action method="setIsHandle"><applied>1</applied></action> 
+        </reference>
+    </page_two_columns_left>
+    
+    <page_two_columns_right>
+        <reference name="root">
+            <action method="setTemplate"><template>page/2columns-right.phtml</template></action>
+            <!-- Mark root page block that template is applied -->
+            <action method="setIsHandle"><applied>1</applied></action> 
+        </reference>
+    </page_two_columns_right>
+    
+    <page_three_columns>
+        <reference name="root">
+            <action method="setTemplate"><template>page/3columns.phtml</template></action>
+            <!-- Mark root page block that template is applied -->
+            <action method="setIsHandle"><applied>1</applied></action> 
+        </reference>
+    </page_three_columns>
+</layout>

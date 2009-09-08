@@ -1,0 +1,17 @@
+<?php
+/**
+ * Category view template
+ *
+ * @see Mage_Catalog_Block_Category_View
+ */
+?>
+<div class="category-block">
+<?php echo $this->getMessagesBlock()->getGroupedHtml() ?>
+    <div class="category-head">
+    <h2><?php echo $this->htmlEscape($this->getCurrentCategory()->getName()) ?></h2>
+    </div>
+    <?php if($_description=$this->getCurrentCategory()->getDescription()): ?>
+        <p class="category-description"><?php echo $_description ?></p>
+    <?php endif; ?>
+    <?php echo $this->getProductListHtml() ?>
+</div>

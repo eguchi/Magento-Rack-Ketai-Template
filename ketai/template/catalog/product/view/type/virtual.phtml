@@ -1,0 +1,15 @@
+<?php
+/**
+ * Simple product deatle template
+ *
+ * @see Mage_Catalog_Block_Product_View_Type_Simple
+ */
+?>
+<?php $_product = $this->getProduct() ?>
+<?php if($_product->isSaleable()): ?>
+    <p><?php echo $this->__('Availability: In stock.') ?></p>
+<?php else: ?>
+    <p><?php echo $this->__('Availability: Out of stock.') ?></p>
+<?php endif; ?>
+
+<?php echo $this->getPriceHtml($_product) ?>

@@ -1,0 +1,22 @@
+<?php $_option = $this->getOption() ?>
+<?php $_optionId = $_option->getId() ?>
+<dt><label><?php echo  $this->htmlEscape($_option->getTitle()) ?><?php if ($_option->getIsRequire()): ?><span class="required">&nbsp;*</span><?php endif; ?></label>
+    <?php echo $this->getFormatedPrice() ?></dt>
+<dd<?php if ($_option->decoratedIsLast){?> class="last"<?php }?>>
+
+<?php if ($_option->getType() == Mage_Catalog_Model_Product_Option::OPTION_TYPE_DATE_TIME
+    || $_option->getType() == Mage_Catalog_Model_Product_Option::OPTION_TYPE_DATE): ?>
+
+    <?php echo $this->getDateHtml() ?>
+
+<?php endif; ?>
+
+<?php if ($_option->getType() == Mage_Catalog_Model_Product_Option::OPTION_TYPE_DATE_TIME
+    || $_option->getType() == Mage_Catalog_Model_Product_Option::OPTION_TYPE_TIME): ?>
+    &nbsp;&nbsp;<?php echo $this->getTimeHtml() ?>
+<?php endif; ?>
+
+<?php if ($_option->getIsRequire()): ?>
+    <input type="hidden" name="validate_datetime_<?php echo $_optionId ?>" class="validate-datetime-<?php echo $_optionId ?>" value="" />
+<?php endif; ?>
+</dd>

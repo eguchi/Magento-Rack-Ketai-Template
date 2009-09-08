@@ -1,0 +1,36 @@
+<?php
+/**
+ * Template for Mage_Page_Block_Html
+ */
+?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head>
+    <?php echo $this->getChildHtml('head') ?>
+</head>
+<body>
+<?php echo $this->getChildHtml('global_notices') ?>
+<div class="header">
+    <?php echo $this->getChildHtml('header') ?>
+</div>
+<div class="middle-container">
+    <div class="middle col-1-layout">
+        <div style="margin-bottom:7px;">
+            <?php echo $this->getChildHtml('breadcrumbs') ?>
+            <div class="clear"></div>
+        </div>
+        <div class="clear"></div>
+        <div id="main" class="col-main">
+            <?php echo $this->getChildHtml('content') ?>
+        </div>
+    </div>
+</div>
+<div class="footer-container">
+    <div class="footer">
+        <?php echo $this->getChildHtml('footer') ?>
+    </div>
+</div>
+<?php echo $this->getChildHtml('before_body_end') ?>
+<?php echo $this->getAbsoluteFooter() ?>
+</body>
+</html>
