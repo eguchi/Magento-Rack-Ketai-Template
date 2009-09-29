@@ -5,8 +5,16 @@
         <legend><?php echo $this->__('Add Items to Cart') ?></legend>
         <?php if(!$_product->isGrouped()): ?>
         <span class="qty-box"><label for="qty"><?php echo $this->__('Qty') ?>:</label>
-        <input name="qty" type="text" class="input-text qty" id="qty" maxlength="12" value="<?php echo $this->getMinimalQty($_product) ?>" /></span>
+        <select name="qty" class="input-text qty" id="qty">
+            <?php $minQty = 1; 
+                  if($this->getMinimalQty($_product) > $minQty):
+                      $minQty = $this->getMinimalQty($_product);
+                  endif;
+            ?>
+            <?php for($i=$minQty; $i<=10; $i++):?>
+            <option value="<?php echo $i ?>"><?php echo $i ?></option>
+            <?php endfor;?>
         <?php endif; ?>
-        <button type="button" class="form-button" onclick="productAddToCartForm.submit()"><span><?php echo $this->__('Add to Cart') ?></span></button>
+        <input type="submit" class="form-button" value="<?php echo $this->__('Add to Cart') ?>" />
     </fieldset>
 <?php endif; ?>
