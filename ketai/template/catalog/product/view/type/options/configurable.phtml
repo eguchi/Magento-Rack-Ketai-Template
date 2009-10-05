@@ -1,6 +1,7 @@
 <?php
 $_product    = $this->getProduct();
 $_attributes = Mage::helper('core')->decorateArray($this->getAllowAttributes());
+$_list = Zend_Json::decode($this->getParentBlock()->getChild('options_configurable')->getJsonConfig());
 ?>
 <?php if ($_product->isSaleable() && count($_attributes)):?>
     <dl>
@@ -9,11 +10,14 @@ $_attributes = Mage::helper('core')->decorateArray($this->getAllowAttributes());
         <dd<?php if ($_attribute->decoratedIsLast){?> class="last"<?php }?>>
           <select name="super_attribute[<?php echo $_attribute->getAttributeId() ?>]" id="attribute<?php echo $_attribute->getAttributeId() ?>" class="required-entry super-attribute-select">
             <option><?php echo $this->__('Choose an Option...') ?></option>
+                <?php if(array_key_exists($_attribute->getAttributeId(), $_list['attributes']) && 
+                         $_list['attributes'][$_attribute->getAttributeId()]['id'] == $_attribute->getAttributeId()): ?>
+                <?php foreach ($_list['attributes'][$_attribute->getAttributeId()]['options'] as $_options) :?>
+                    <option value="<?php echo $_options['id'] ?>"><?php echo $_options['label'] ?></option>
+                <?php endforeach; ?>
+                <?php endif; ?>
           </select>
         </dd>
     <?php endforeach; ?>
     </dl>
-    <script type="text/javascript">
-      var spConfig = new Product.Config(<?php echo $this->getJsonConfig() ?>);
-    </script>
 <?php endif;?>
