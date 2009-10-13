@@ -1,0 +1,141 @@
+<?xml version="1.0"?>
+<layout version="0.1.0">
+    <default>
+        <reference name="top.links">
+            <block type="ketai/checkout_links" name="checkout_cart_link">
+                <action method="addCartLink"></action>
+                <action method="addCheckoutLink"></action>
+            </block>
+        </reference>
+        <reference name="right">
+            <block type="ketai/checkout_cart_sidebar" name="cart_sidebar" before="-" template="checkout/cart/sidebar.phtml"/>
+        </reference>
+
+    </default>
+    <ketai_cart_index>
+        <remove name="right"/>
+        <remove name="left"/>
+        <!-- Mage_Checkout -->
+        <reference name="root">
+            <action method="setTemplate"><template>page/1column.phtml</template></action>
+        </reference>
+        <reference name="content">
+            <block type="checkout/cart" name="checkout.cart">
+                <action method="setCartTemplate"><value>checkout/cart.phtml</value></action>
+                <action method="setEmptyTemplate"><value>checkout/cart/noItems.phtml</value></action>
+                <action method="chooseTemplate"/>
+
+                <block type="core/text_list" name="checkout.cart.top_methods" as="top_methods">
+                    <block type="checkout/onepage_link" name="checkout.cart.methods.onepage" template="checkout/onepage/link.phtml"/>
+                </block>
+
+                <block type="core/text_list" name="checkout.cart.methods" as="methods">
+                    <block type="checkout/onepage_link" name="checkout.cart.methods.onepage" template="checkout/onepage/link.phtml"/>
+                    <block type="ketai/checkout_link" name="checkout.cart.methods.multishipping" template="checkout/multishipping/link.phtml"/>
+                </block>
+
+                <block type="checkout/cart_coupon" name="checkout.cart.coupon" as="coupon" template="checkout/cart/coupon.phtml"/>
+                <block type="checkout/cart_shipping" name="checkout.cart.shipping" as="shipping" template="checkout/cart/shipping.phtml"/>
+                <block type="checkout/cart_crosssell" name="checkout.cart.crosssell" as="crosssell" template="checkout/cart/crosssell.phtml"/>
+            </block>
+        </reference>
+    </ketai_cart_index>
+
+    <ketai_checkout>
+        <remove name="right"/>
+        <remove name="left"/>
+        <reference name="root">
+            <action method="setTemplate"><template>page/1column.phtml</template></action>
+        </reference>
+        <reference name="content">
+            <block type="ketai/checkout_state" name="checkout_state" template="checkout/multishipping/state.phtml"/>
+        </reference>
+    </ketai_checkout>
+    
+    <ketai_checkout_login>
+        <update handle="customer_account_login"/>
+    </ketai_checkout_login>
+    
+    <ketai_checkout_register>
+        <update handle="customer_account_create"/>
+    </ketai_checkout_register>
+
+    <ketai_checkout_address_select>
+        <update handle="ketai_checkout"/>
+        <!-- Mage_Checkout -->
+        <reference name="content">
+            <block type="ketai/checkout_address_select" name="checkout_address_select" template="checkout/multishipping/address/select.phtml"/>
+        </reference>
+    </ketai_checkout_address_select>
+
+    <ketai_checkout_address_selectbilling>
+        <update handle="ketai_checkout"/>
+        <!-- Mage_Checkout -->
+        <reference name="content">
+            <block type="ketai/checkout_address_select" name="checkout_address_select" template="checkout/multishipping/address/select.phtml"/>
+        </reference>
+    </ketai_checkout_address_selectbilling>
+
+
+    <ketai_checkout_address_newshipping>
+        <update handle="ketai_checkout"/>
+        <update handle="ketai_checkout_customer_address"/>
+    </ketai_checkout_address_newshipping>
+
+    <ketai_checkout_address_newbilling>
+        <update handle="ketai_checkout"/>
+        <update handle="ketai_checkout_customer_address"/>
+    </ketai_checkout_address_newbilling>
+
+    <ketai_checkout_address_editshipping>
+        <update handle="ketai_checkout"/>
+        <update handle="ketai_checkout_customer_address"/>
+    </ketai_checkout_address_editshipping>
+
+    <ketai_checkout_address_editaddress>
+        <update handle="ketai_checkout"/>
+        <update handle="ketai_checkout_customer_address"/>
+    </ketai_checkout_address_editaddress>
+
+    <ketai_checkout_address_editbilling>
+        <update handle="ketai_checkout"/>
+        <update handle="ketai_checkout_customer_address"/>
+    </ketai_checkout_address_editbilling>
+
+    <ketai_checkout_customer_address>
+        <reference name="content">
+            <block type="customer/address_edit" name="customer_address_edit" template="customer/address/edit.phtml"/>
+        </reference>
+    </ketai_checkout_customer_address>
+
+    <ketai_checkout_addresses>
+        <update handle="ketai_checkout"/>
+        <!-- Mage_Checkout -->
+        <reference name="content">
+            <block type="ketai/checkout_addresses" name="checkout_addresses" template="checkout/multishipping/addresses.phtml">
+                <action method="addItemRender"><type>default</type><block>checkout/cart_item_renderer</block><template>ketai/checkout/item/default.phtml</template></action>
+                <action method="addItemRender"><type>grouped</type><block>checkout/cart_item_renderer_grouped</block><template>ketai/checkout/item/default.phtml</template></action>
+                <action method="addItemRender"><type>configurable</type><block>checkout/cart_item_renderer_configurable</block><template>ketai/checkout/item/default.phtml</template></action>
+            </block>
+        </reference>
+    </ketai_checkout_addresses>
+
+    <ketai_checkout_shipping>
+    </ketai_checkout_shipping>
+
+    <ketai_checkout_billing>
+    </ketai_checkout_billing>
+
+    <ketai_checkout_shippingmethod>
+    </ketai_checkout_shippingmethod>
+
+    <ketai_checkout_paymentmethod>
+    </ketai_checkout_paymentmethod>
+
+    <ketai_checkout_overview>
+    </ketai_checkout_overview>
+
+    <ketai_checkout_success>
+    </ketai_checkout_success>
+
+</layout>
