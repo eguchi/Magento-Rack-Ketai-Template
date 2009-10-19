@@ -76,32 +76,6 @@
         </reference>
     </ketai_checkout_address_selectbilling>
 
-
-    <ketai_checkout_address_newshipping>
-        <update handle="ketai_checkout"/>
-        <update handle="ketai_checkout_customer_address"/>
-    </ketai_checkout_address_newshipping>
-
-    <ketai_checkout_address_newbilling>
-        <update handle="ketai_checkout"/>
-        <update handle="ketai_checkout_customer_address"/>
-    </ketai_checkout_address_newbilling>
-
-    <ketai_checkout_address_editshipping>
-        <update handle="ketai_checkout"/>
-        <update handle="ketai_checkout_customer_address"/>
-    </ketai_checkout_address_editshipping>
-
-    <ketai_checkout_address_editaddress>
-        <update handle="ketai_checkout"/>
-        <update handle="ketai_checkout_customer_address"/>
-    </ketai_checkout_address_editaddress>
-
-    <ketai_checkout_address_editbilling>
-        <update handle="ketai_checkout"/>
-        <update handle="ketai_checkout_customer_address"/>
-    </ketai_checkout_address_editbilling>
-
     <ketai_checkout_customer_address>
         <reference name="content">
             <block type="customer/address_edit" name="customer_address_edit" template="customer/address/edit.phtml"/>
@@ -121,18 +95,50 @@
     </ketai_checkout_addresses>
 
     <ketai_checkout_shipping>
+        <update handle="ketai_checkout" />
+        <reference name="content">
+            <block type="ketai/checkout_shipping" name="checkout_shipping" template="checkout/shipping.phtml" />
+        </reference>
     </ketai_checkout_shipping>
 
     <ketai_checkout_billing>
+        <update handle="ketai_checkout" />
+        <reference name="content">
+            <block type="ketai/checkout_billing" name="checkout_billing" template="checkout/billing.phtml" />
+        </reference>
+
     </ketai_checkout_billing>
 
     <ketai_checkout_shippingmethod>
+        <update handle="ketai_checkout" />
+        <reference name="content">
+            <block type="ketai/checkout_shipping_method" name="checkout_shipping_method" template="checkout/shipping_method.phtml">
+            <block type="ketai/checkout_shipping_method_available" name="ketai.checkout.shipping_method.available" as="available" template="checkout/shipping_method/available.phtml"/>
+            <block type="ketai/checkout_shipping_method_additional" name="ketai.checkout.shipping_method.additional" as="additional" template="checkout/shipping_method/additional.phtml"/>
+            </block>
+
+        </reference>
     </ketai_checkout_shippingmethod>
 
     <ketai_checkout_paymentmethod>
+        <update handle="ketai_checkout" />
+        <reference name="content">
+            <block type="ketai/checkout_payment_methods" name="checkout_payment_method" template="checkout/payment/methods.phtml">
+                <action method="setMethodFormTemplate"><method>purchaseorder</method><template>payment/form/purchaseorder.phtml</template></action>
+            </block>
+        </reference>
     </ketai_checkout_paymentmethod>
 
     <ketai_checkout_overview>
+        <update handle="ketai_checkout"/>
+        <reference name="content">
+            <block type="ketai/checkout_review_info" name="checkout_overview" template="ketai/checkout/review/info.phtml">
+			<action method="addItemRender"><type>default</type><block>checkout/cart_item_renderer</block><template>checkout/onepage/review/item.phtml</template></action>
+			<action method="addItemRender"><type>grouped</type><block>checkout/cart_item_renderer_grouped</block><template>checkout/onepage/review/item.phtml</template></action>
+			<action method="addItemRender"><type>configurable</type><block>checkout/cart_item_renderer_configurable</block><template>checkout/onepage/review/item.phtml</template></action>
+            <block type="ketai/checkout_cart_totals" name="ketai.checkout.review.info.totals" as="totals" template="ketai_checkout/review/totals.phtml"/>
+		</block>
+        </reference>
     </ketai_checkout_overview>
 
     <ketai_checkout_success>
