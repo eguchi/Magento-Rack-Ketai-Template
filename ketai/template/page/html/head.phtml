@@ -1,4 +1,5 @@
 <title>
     <?php echo htmlspecialchars(html_entity_decode($this->getTitle())) ?>
 </title>
-
+<?php echo $this->getCssJsHtml() ?>
+<?php echo $this->getChildHtml() ?>
