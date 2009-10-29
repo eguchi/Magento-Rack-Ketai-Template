@@ -53,7 +53,10 @@
     </ketai_checkout>
     
     <ketai_checkout_login>
-        <update handle="customer_account_login"/>
+        <update handle="ketai_checkout"/>
+        <reference name="content">
+            <block type="ketai/checkout_login" name="checkout_login" template="checkout/login.phtml" />
+        </reference>
     </ketai_checkout_login>
     
     <ketai_checkout_register>
