@@ -2,10 +2,7 @@
 <layout version="0.1.0">
     <default>
         <reference name="top.links">
-            <block type="ketai/checkout_links" name="checkout_cart_link">
-                <action method="addCartLink"></action>
-                <action method="addCheckoutLink"></action>
-            </block>
+			<block type="ketai/checkout_link" name="checkout_cart_link"/>
         </reference>
         <reference name="right">
             <block type="ketai/checkout_cart_sidebar" name="cart_sidebar" before="-" template="checkout/cart/sidebar.phtml"/>
