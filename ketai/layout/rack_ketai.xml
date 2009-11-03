@@ -2,7 +2,10 @@
 <layout version="0.1.0">
     <default>
         <reference name="top.links">
-			<block type="ketai/checkout_link" name="checkout_cart_link"/>
+            <block type="ketai/checkout_link" name="checkout_cart_link">
+                <action method="addCartLink"></action>
+                <action method="addCheckoutLink"></action>
+            </block>
         </reference>
         <reference name="right">
             <block type="ketai/checkout_cart_sidebar" name="cart_sidebar" before="-" template="checkout/cart/sidebar.phtml"/>
@@ -133,18 +136,18 @@
         <update handle="ketai_checkout"/>
         <reference name="content">
             <!--<block type="ketai/checkout_review_info" name="checkout_overview" template="checkout/review/info.phtml">
-			    <action method="addItemRender"><type>default</type><block>checkout/cart_item_renderer</block><template>checkout/review/item.phtml</template></action>
-			    <action method="addItemRender"><type>grouped</type><block>checkout/cart_item_renderer_grouped</block><template>checkout/review/item.phtml</template></action>
-			    <action method="addItemRender"><type>configurable</type><block>checkout/cart_item_renderer_configurable</block><template>checkout/review/item.phtml</template></action>
+                <action method="addItemRender"><type>default</type><block>checkout/cart_item_renderer</block><template>checkout/review/item.phtml</template></action>
+                <action method="addItemRender"><type>grouped</type><block>checkout/cart_item_renderer_grouped</block><template>checkout/review/item.phtml</template></action>
+                <action method="addItemRender"><type>configurable</type><block>checkout/cart_item_renderer_configurable</block><template>checkout/review/item.phtml</template></action>
                 <block type="ketai/checkout_cart_totals" name="ketai.checkout.review.info.totals" as="totals" template="checkout/review/totals.phtml"/>
             </block>
             -->
             <block type="ketai/checkout_review" name="checkout_review" template="checkout/review.phtml" >
                 <block type="checkout/agreements" name="checkout.agreements" as="agreements" template="checkout/agreements.phtml"/>
                 <block type="ketai/checkout_review_info" name="checkout_info" as="info" template="checkout/review/info.phtml">
-			        <action method="addItemRender"><type>default</type><block>checkout/cart_item_renderer</block><template>checkout/review/item.phtml</template></action>
-			        <action method="addItemRender"><type>grouped</type><block>checkout/cart_item_renderer_grouped</block><template>checkout/review/item.phtml</template></action>
-			        <action method="addItemRender"><type>configurable</type><block>checkout/cart_item_renderer_configurable</block><template>checkout/review/item.phtml</template></action>
+                    <action method="addItemRender"><type>default</type><block>checkout/cart_item_renderer</block><template>checkout/review/item.phtml</template></action>
+                    <action method="addItemRender"><type>grouped</type><block>checkout/cart_item_renderer_grouped</block><template>checkout/review/item.phtml</template></action>
+                    <action method="addItemRender"><type>configurable</type><block>checkout/cart_item_renderer_configurable</block><template>checkout/review/item.phtml</template></action>
                     <block type="ketai/checkout_cart_totals" name="ketai.checkout.review.info.totals" as="totals" template="checkout/review/totals.phtml"/>
                 </block>
             </block>
